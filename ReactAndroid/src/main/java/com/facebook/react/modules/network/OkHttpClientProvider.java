@@ -101,8 +101,10 @@ public class OkHttpClientProvider {
   */
   public static OkHttpClient.Builder enableTls12OnPreLollipop(OkHttpClient.Builder client) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+      FLog.i("OkHttpClientProvider", "Enabling Tls12OnPreLollipop");
       try {
         client.sslSocketFactory(new TLSSocketFactory());
+        FLog.i("OkHttpClientProvider", "client.sslSocketFactory succeeded, setting ConnectionSpec");
 
         ConnectionSpec cs =
             new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
